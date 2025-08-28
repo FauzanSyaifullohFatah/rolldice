@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll The Dice | Wedevolv</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #003;
+            gap: 50px;
+            height: 100vh;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            height: 40vh;
+            background: #002;
+            perspective: 1000px;
+            box-shadow: 0 0 10px black;
+            border-radius: 10px;
+        }
+        .dice {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: dice 1s forwards;
+        }
+        @keyframes dice1 {
+            0%  {transform: translateY(0) rotateY(0deg) rotateX(0deg);}
+            50% {transform: translateY(-100px) rotateY(720deg) rotateX(720deg);}
+            100% {transform: translateY(0px) rotateY(270deg) rotateX(0deg);}
+        }
+        @keyframes dice2 {
+            0%  {transform: translateY(0) rotateY(0deg) rotateX(0deg);}
+            50% {transform: translateY(-100px) rotateY(720deg) rotateX(720deg);}
+            100% {transform: translateY(0px) rotateY(90deg) rotateX(0deg);}
+        }
+        @keyframes dice3 {
+            0%  {transform: translateY(0) rotateY(0deg) rotateX(0deg);}
+            50% {transform: translateY(-100px) rotateY(720deg) rotateX(720deg);}
+            100% {transform: translateY(0px) rotateY(360deg) rotateX(0deg);}
+        }
+        @keyframes dice4 {
+            0%  {transform: translateY(0) rotateY(0deg) rotateX(0deg);}
+            50% {transform: translateY(-100px) rotateY(720deg) rotateX(720deg);}
+            100% {transform: translateY(0px) rotateY(180deg) rotateX(0deg);}
+        }
+        @keyframes dice5 {
+            0%  {transform: translateY(0) rotateY(0deg) rotateX(0deg);}
+            50% {transform: translateY(-100px) rotateY(720deg) rotateX(720deg);}
+            100% {transform: translateY(0px) rotateY(0deg) rotateX(90deg);}
+        }
+        @keyframes dice6 {
+            0%  {transform: translateY(0) rotateY(0deg) rotateX(0deg);}
+            50% {transform: translateY(-100px) rotateY(720deg) rotateX(720deg);}
+            100% {transform: translateY(0px) rotateY(0deg) rotateX(270deg);}
+        }
+        .dice .side {
+            position: absolute;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 5px;
+            width: 100px;
+            height: 100px;
+            background: rgb(240, 248, 255);
+            box-shadow: 0 0 10px black inset, 0 0 10px black;
+        }
+        .dice .side .circle {
+            width: 25px;
+            height: 25px;
+            border-radius: 100%;
+            background: black;
+        }
+        .dice .side:nth-child(1){
+            transform: translateX(50px) rotateY(90deg);
+        }
+        .dice .side:nth-child(2){
+            transform: translateX(-50px) rotateY(90deg);
+        }
+        .dice .side:nth-child(3){
+            transform: translateZ(50px);
+        }
+        .dice .side:nth-child(4){
+            transform: translateZ(-50px);
+        }
+        .dice .side:nth-child(5){
+            transform: translateY(50px) rotateX(90deg);
+        }
+        .dice .side:nth-child(6){
+            transform: translateY(-50px) rotateX(90deg);
+        }
+        button {
+            background: #002;
+            color: aliceblue;
+            cursor: pointer;
+            width: 240px;
+            height: 60px;
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="dice">
+            <div class="side">
+                <div class="circle"></div>
+            </div>
+            <div class="side">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="side">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="side">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="side">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="side">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </div>
+    </main>
+    <button onclick="rollDice();">Roll the dice</button>
+    <script>
+        const audio = new Audio("dice.mp3")
+        function rollDice(){
+            var dice = document.getElementsByClassName("dice")[0];
+            dice.style.animation = "none";
+            setTimeout(() => {
+                var num = Math.floor(Math.random() * 6) + 1;
+                dice.style.animation = `1s dice${num} forwards`;
+                audio.currentTime = 1.5;
+                audio.play();
+            }, 100);
+        }
+    </script>
+</body>
+</html>
